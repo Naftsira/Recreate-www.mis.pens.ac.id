@@ -1,6 +1,13 @@
 const express = require("express");
 const router = express.Router();
+const User = require("./model");
 const { createNewUser, authenticateUser } = require("./controller");
+const auth = require("./../../middleware/auth");
+
+// dasbor
+router.get("/private", auth, async (req, res) => {
+  res.status(200).send(`Ure in dasbor`);
+});
 
 // login
 router.post("/", async (req, res) => {
