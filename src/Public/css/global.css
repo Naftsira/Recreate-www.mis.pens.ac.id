@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+
+#carouselwrap::-webkit-scrollbar {
+  display: none;
+}
+#carouselwrap {
+  anchor-name: --carousel;
+  scroll-snap-type: x mandatory;
+  scroll-marker-group: before;
+}
+
+#cards::scroll-marker {
+  content: "";
+  height: 0.5em;
+  width: 0.5em;
+  border-radius: 50%;
+  border: 2px solid #334155;
+  background-color: #020617;
+}
+::scroll-marker-group {
+  display: flex;
+  justify-content: center;
+  gap: 0.5em;
+  border-color: white;
+  border-radius: 50%;
+}
+
+#cards::scroll-marker:target-current {
+  background-color: #38bdf8;
+  border-color: #38bdf8;
+  box-shadow: 0 0 10px #38bdf8, 0 0 25px #38bdf8aa, 0 0 50px #38bdf866;
+  transition: all 250ms ease-in-out;
+}
+
+#carouselwrap::scroll-button(right),
+#carouselwrap::scroll-button(left) {
+  content: ">";
+  border: none;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 2rem;
+  background-color: #0284c7cc;
+  color: white;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  padding-bottom: 0.1em;
+  cursor: pointer;
+  position: fixed;
+  position-anchor: --carousel;
+  position-area: top right;
+  translate: -60% 50%;
+  box-shadow: 0 4px 12px #38bdf866;
+  transition: all 200ms ease-in-out;
+}
+#carouselwrap::scroll-button(left) {
+  content: "<";
+  position-area: top left;
+  translate: 60% 50%;
+}
+
+#carouselwrap::scroll-button(right):disabled,
+#carouselwrap::scroll-button(left):disabled {
+  opacity: 0.7;
+  cursor: auto;
+}
+
+@media screen and (min-width: 1024px) {
+  #carouselwrap::scroll-button(right),
+  #carouselwrap::scroll-button(left) {
+    display: none;
+  }
+}

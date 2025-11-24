@@ -3,14 +3,20 @@ const router = express.Router();
 const User = require("./model");
 const { createNewUser, authenticateUser } = require("./controller");
 const auth = require("./../../middleware/auth");
+const loginCheck = require("./../../middleware/loginCheck");
 
 // dasbor
 router.get("/private", auth, async (req, res) => {
-  res.status(200).send(`Ure in dasbor`);
+  res.status(200).render("index");
+});
+
+// login page
+router.get("/login", loginCheck, (req, res) => {
+  res.status(200).render("login");
 });
 
 // login
-router.post("/", async (req, res) => {
+router.post("/login", async (req, res) => {
   console.log("Someone menembak!");
   try {
     let { email, password } = req.body;
@@ -22,7 +28,7 @@ router.post("/", async (req, res) => {
     }
 
     const authenticatedUser = await authenticateUser({ email, password });
-    res.status(200).json(authenticatedUser);
+    res.status(200).cookie("token", authenticatedUser.token, { httpOnly: true, secure: false, sameSite: "lax", path: "/" }).json({ success: true });
   } catch (error) {
     res.status(400).send(error.message);
   }

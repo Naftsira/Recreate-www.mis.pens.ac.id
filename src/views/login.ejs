@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/global.css" />
+    <link rel="shortcut icon" href="/image/pensLogo.ico" type="image/x-icon" />
+    <script src="/login.js" defer></script>
+    <title>MIS</title>
+  </head>
+  <body class="font-hero text-slate-200 bg-slate-950">
+    <div class="img w-full bg-[url(../image/hero2.jpg)] bg-cover bg-top h-dvh -z-20 flex">
+      <form
+        id="loginForm"
+        class="max-w-lg bg-linear-to-br from-sky-900/50 via-sky-300/20 to-slate-800 backdrop-blur-sm container mx-auto my-auto flex justify-center items-center flex-col w-3/4 rounded-xl border border-sky-300/30 shadow-2xl shadow-sky-400/20 *:w-3/4"
+      >
+        <div class="flex justify-between items-center my-5">
+          <img src="/image/pensLogo.webp" class="w-15 h-15 saturate-50" />
+          <h1 class="text-4xl mt-5 mb-2 font-extrabold text-center bg-linear-to-r from-emerald-300 to-yellow-300 bg-clip-text text-transparent text-shadow-sm text-shadow-sky-400/10">Login to MIS</h1>
+        </div>
+        <div class="max-w-sm border bg-linear-to-br from-sky-900/50 via-sky-300/20 border-sky-300/30 rounded-xl shadow-xl mx-auto p-5 m-5 focus:bg-amber-200 group peer">
+          <label for="email" class="*:transition-all *:duration-300 *:ease-in-out">
+            <span class="mb-1 block font-semibold after:opacity-0 after:content-['*'] after:transition-all after:duration-500 after:ease-in-out after:text-pink-500 after:ml-0.5 group-has-invalid:after:opacity-100">Email</span>
+            <input
+              type="email"
+              id="email"
+              class="bg-slate-800 px-3 py-2 border shadow rounded w-full block text-sm placeholder:text-slate-400/50 focus:outline-none focus:border-green-500 invalid:focus:border-pink-700 border-transparent invalid:text-pink-500 peer"
+              placeholder="na***li.it.student.pens.ac.id"
+              required
+            />
+            <p class="text-sm m-1 opacity-0 text-pink-600 peer-invalid:opacity-100">Email tidak valid!</p>
+          </label>
+        </div>
+        <div class="max-w-sm border bg-linear-to-br from-sky-900/50 via-sky-300/20 border-sky-300/30 rounded-xl shadow-xl mx-auto p-5 m-5 focus:bg-amber-200 group peer">
+          <label for="password" class="*:transition-all *:duration-300 *:ease-in-out">
+            <span class="mb-1 block font-semibold after:opacity-0 after:content-['*'] after:transition-all after:duration-500 after:ease-in-out after:text-pink-500 after:ml-0.5 group-has-invalid:after:opacity-100">Password</span>
+            <input
+              type="password"
+              id="password"
+              class="bg-slate-800 px-3 py-2 border shadow rounded w-full block text-sm placeholder:text-slate-400/50 focus:outline-none focus:border-green-500 invalid:focus:border-pink-700 border-transparent invalid:text-pink-500 peer"
+              placeholder="Ex: Albert Edison"
+              minlength="8"
+              required
+            />
+            <p class="text-sm m-1 opacity-0 text-pink-600 peer-invalid:opacity-100">Password minimal 8!</p>
+          </label>
+        </div>
+        <button type="submit" class="cursor-pointer bg-linear-to-br from-sky-300 to-blue-500 rounded-sm max-w-48 py-3 my-7 peer-has-invalid:opacity-50 peer-has-invalid:cursor-not-allowed" disabled>Login</button>
+      </form>
+    </div>
+    <script src="/login.js"></script>
+  </body>
+</html>
