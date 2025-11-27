@@ -3,11 +3,26 @@ const router = express.Router();
 const User = require("./model");
 const { createNewUser, authenticateUser } = require("./controller");
 const auth = require("./../../middleware/auth");
+const jwt = require("jsonwebtoken");
+const { TOKEN_KEY } = process.env;
 const loginCheck = require("./../../middleware/loginCheck");
 
+// logout
+router.get("/authenticated/logout", (req, res) => {
+  res.clearCookie("token");
+  res.redirect("/");
+});
+
 // dasbor
-router.get("/private", auth, async (req, res) => {
-  res.status(200).render("index");
+router.get("/authenticated/dashboard", auth, async (req, res) => {
+  const data = req.cookies.token;
+  const token = await jwt.verify(data, TOKEN_KEY);
+  const userToken = token.userId;
+  const dataUser = await User.findById(userToken);
+
+  res.status(200).render("index", {
+    name: dataUser.name,
+  });
 });
 
 // login page
@@ -30,7 +45,7 @@ router.post("/login", async (req, res) => {
     const authenticatedUser = await authenticateUser({ email, password });
     res.status(200).cookie("token", authenticatedUser.token, { httpOnly: true, secure: false, sameSite: "lax", path: "/" }).json({ success: true });
   } catch (error) {
-    res.status(400).send(error.message);
+    res.status(400).json({ success: false });
   }
 });
 

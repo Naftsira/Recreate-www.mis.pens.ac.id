@@ -10,6 +10,9 @@ fields.forEach((node) => {
   });
 });
 
+// Error alert
+const errors = document.getElementById("errortrigger");
+
 // payloads config
 
 forms.addEventListener("submit", async (e) => {
@@ -20,7 +23,7 @@ forms.addEventListener("submit", async (e) => {
     password: fields[1].value,
   };
 
-  const res = await fetch("/api/v1/user/login", {
+  const res = await fetch("/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
@@ -28,6 +31,11 @@ forms.addEventListener("submit", async (e) => {
 
   const result = await res.json();
   if (result.success) {
-    window.location.href = "/api/v1/user/private";
+    window.location.reload();
+  } else {
+    errors.checked = true;
+    setTimeout(() => {
+      errors.checked = false;
+    }, 3000);
   }
 });

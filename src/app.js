@@ -21,6 +21,6 @@ app.use(cookieParser());
 app.use(cors());
 app.use(bodyParser());
 app.use(express.urlencoded({ extended: true }));
-app.use("/api/v1", routes);
+app.use("/", routes);
 
 module.exports = app;

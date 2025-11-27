@@ -7,7 +7,7 @@ const verifyToken = async (req, res, next) => {
 
   // check
   if (!token) {
-    return res.status(403).redirect("/api/v1/user/login");
+    return res.status(403).redirect("/login");
   }
 
   //   verify
@@ -15,7 +15,7 @@ const verifyToken = async (req, res, next) => {
     const decodedToken = await jwt.verify(token, TOKEN_KEY);
     req.currentUser = decodedToken;
   } catch (error) {
-    return res.status(401).redirect("/api/v1/user/login");
+    return res.status(401).redirect("/login");
   }
   //   to req
   return next();

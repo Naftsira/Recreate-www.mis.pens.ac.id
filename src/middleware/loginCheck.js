@@ -18,7 +18,7 @@ const verifyToken = async (req, res, next) => {
     return next();
   }
   //   continue to private
-  return res.redirect("/api/v1/user/private");
+  return res.redirect("/authenticated/dashboard");
 };
 
 module.exports = verifyToken;
