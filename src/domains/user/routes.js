@@ -43,10 +43,8 @@ router.post("/login", async (req, res) => {
     }
 
     const authenticatedUser = await authenticateUser({ email, password });
-    res.status(200).cookie("token", authenticatedUser.token, { httpOnly: true, secure: false, sameSite: "lax", path: "/" }).json({ success: true });
-  } catch (error) {
-    res.status(400).json({ success: false });
-  }
+    res.status(200).cookie("token", authenticatedUser.token, { httpOnly: true, secure: true, sameSite: "strict", path: "/" }).json({ success: true });
+  } catch (error) {}
 });
 
 // Sign up
