@@ -1,9 +1,9 @@
 const jwt = require("jsonwebtoken");
 
-const { TOKEN_KEY } = process.env;
+const TOKEN_KEY = process.env.TOKEN_KEY;
 
 const verifyToken = async (req, res, next) => {
-  const token = req.cookies?.token || req.body?.token || req.query?.token || req.headers["x-access-token"];
+  const token = req.cookies?.token;
 
   // check
   if (!token) {

@@ -3,8 +3,6 @@ const router = express.Router();
 const User = require("./model");
 const { createNewUser, authenticateUser } = require("./controller");
 const auth = require("./../../middleware/auth");
-const jwt = require("jsonwebtoken");
-const { TOKEN_KEY } = process.env;
 const loginCheck = require("./../../middleware/loginCheck");
 
 // logout
@@ -15,14 +13,7 @@ router.get("/authenticated/logout", (req, res) => {
 
 // dasbor
 router.get("/authenticated/dashboard", auth, async (req, res) => {
-  const data = req.cookies.token;
-  const token = await jwt.verify(data, TOKEN_KEY);
-  const userToken = token.userId;
-  const dataUser = await User.findById(userToken);
-
-  res.status(200).render("index", {
-    name: dataUser.name,
-  });
+  res.status(200).render("index", { name: req.currentUser.name });
 });
 
 // login page
