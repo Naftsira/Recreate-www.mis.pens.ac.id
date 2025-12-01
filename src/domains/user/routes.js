@@ -13,7 +13,8 @@ router.get("/authenticated/logout", (req, res) => {
 
 // dasbor
 router.get("/authenticated/dashboard", auth, async (req, res) => {
-  res.status(200).render("index", { name: req.currentUser.name });
+  const currentuser = await User.findById(req.currentUser.userId);
+  res.status(200).render("index", { name: currentuser.name });
 });
 
 // login page
